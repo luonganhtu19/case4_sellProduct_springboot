@@ -1,42 +1,35 @@
-package com.codegym.ndt.sell_product.model;
+package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import java.util.List;
+
+@Entity
+@Table
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BillDetails {
-    private long idBillDetails;
-    private long quantity;
-    private long  idBill;
-    private Product product;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public BillDetails(){}
+    @Size(min = 1)
+    private Integer quantity;
 
-    public long getIdBillDetails() {
-        return idBillDetails;
-    }
+    private Long price;
 
-    public void setIdBillDetails(long idBillDetails) {
-        this.idBillDetails = idBillDetails;
-    }
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Products products;
 
-    public long getQuantity() {
-        return quantity;
-    }
+    @ManyToOne
+    @JoinColumn(name="bill_id")
+    private Bill bill;
 
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public long getIdBill() {
-        return idBill;
-    }
-
-    public void setIdBill(long idBill) {
-        this.idBill = idBill;
-    }
 }

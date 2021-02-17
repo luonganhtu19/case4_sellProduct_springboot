@@ -1,32 +1,31 @@
 package com.example.demo.model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bill {
+public class TradeMark {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long total;
+    @NotNull
+    private String name;
 
-    private String note;
+    @Transient
+    private MultipartFile img;
 
-    private Date dateOder;
+    private String image;
 
-    private Integer status;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private AppUser appUser;
 
 }

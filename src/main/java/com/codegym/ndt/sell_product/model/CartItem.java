@@ -1,41 +1,29 @@
-package com.codegym.ndt.sell_product.model;
+package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Table
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartItem {
-    private long idCartItem;
-    private long quantity;
-    private Product product;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Products products;
+
+    @ManyToOne
+    @JoinColumn(name="cart_id")
     private Cart cart;
 
-    public CartItem(){}
-    public long getIdCartItem() {
-        return idCartItem;
-    }
-
-    public void setIdCartItem(long idCartItem) {
-        this.idCartItem = idCartItem;
-    }
-
-    public long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 }
